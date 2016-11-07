@@ -1,0 +1,86 @@
+<td-layout-nav logo="assets/icons/hippohonk-logo.svg">
+  <div toolbar-content layout="row" layout-align="center center" flex>
+    <span flex></span>
+    <a md-icon-button md-tooltip="iTunes Playlist" href="http://apple.co/1HEFDl9" target="_blank"><md-icon svgSrc="assets/icons/apple.svg"></md-icon></a>
+    <a md-icon-button md-tooltip="Spotify Playlist" href="http://spoti.fi/1PMcRAB" target="_blank"><md-icon svgSrc="assets/icons/spotify.svg"></md-icon></a>
+  </div>
+  <div class="md-content" flex md-scroll-y tdMediaToggle="gt-xs" [mediaClasses]="['push']">
+    <div layout="row" layout-wrap>
+      <template let-item let-last="last" ngFor [ngForOf]="festivals" let-i2="index">
+          <div flex-gt-md="25" flex-md="50" flex-sm="50" flex-xs="50">
+            <md-card href [routerLink]="['/festivals']" class="md-card-colored">
+              <div
+                  class="pad cover fest tc-{{item.type}} bgc-{{item.background}} md-whiteframe-z1"
+                  layout="column" 
+                  layout-align="center center">
+                  <md-icon class="icon" svgSrc="assets/icons/{{item.icon}}.svg"></md-icon>
+              </div>
+              <md-card-content>
+                <div class="md-subhead text-truncate" title="{{item.name}}">{{item.name}}</div>
+              </md-card-content>
+            </md-card>
+          </div>
+        </template>
+    </div>
+    <div layout-gt-xs="row" tdMediaToggle="gt-xs" [mediaClasses]="['push-top']">
+      <div flex-gt-xs="60">
+        <div class="pad-sm">
+        <h3 class="md-headline push-top-xs push-bottom-sm">Featured Bands</h3>
+        <md-divider></md-divider>
+      </div>
+      <div layout="row" layout-wrap>
+        <template let-item let-last="last" ngFor [ngForOf]="bands" let-i2="index">
+          <div flex-gt-md="50" flex-md="33" flex-sm="33" flex-xs="50" *ngIf="i2>10">
+            <md-card href [routerLink]="['/festivals/band', item.item_id]" class="md-card-colored">
+              <div layout="row">
+                <div [style.background-image]="'url(assets/images/' + item.avatar + '.jpg)'"
+                      class="pad cover"
+                      layout="column" 
+                      layout-align="center center">
+                </div>
+                <div flex class="text-truncate">
+                  <div layout="column" layout-padding class="text-truncate">
+                    <div class="md-subhead text-truncate" title="{{item.name}}">{{item.name}}</div>
+                    <div class="md-caption tc-grey-600 text-truncate" title="{{item.description}}"> {{item.description}} </div>
+                  </div>
+                </div>
+              </div>
+            </md-card>
+          </div>
+        </template>
+      </div>
+      </div>
+      <div flex-gt-xs="40">
+        <md-card>
+          <md-card-title>Top Ranked Bands</md-card-title>
+          <md-card-subtitle>our favorite bands</md-card-subtitle>
+          <md-divider></md-divider>
+          <md-nav-list class="will-load">
+            <template tdLoading="bands.load">
+              <template let-item let-last="last" ngFor [ngForOf]="bands" let-i="index">
+                <md-list-item [routerLink]="['/festivals/band', item.item_id]" *ngIf="i<10">
+                  <img md-list-avatar src="assets/images/{{item.avatar}}.jpg" alt="{{item.name}}">
+                  <h3 md-line> {{item.name}} </h3>
+                  <p md-line> {{item.description}} </p>
+                  <span>#{{item.rank}}</span>
+                </md-list-item>
+                <md-divider *ngIf="!last && i<10" md-inset></md-divider>
+              </template>
+            </template>
+          </md-nav-list>
+          <md-divider></md-divider>
+          <md-card-actions>
+            <button md-button color="accent">Edit</button>
+          </md-card-actions>
+        </md-card>
+      </div>
+    </div>
+
+    <md-divider></md-divider>
+    <div layout="row" layout-align="start center" layout-padding>
+      <span class="md-caption">Copyright &copy; 2016 Teradata. All rights reserved</span>
+      <span flex></span>
+      <md-icon class="md-icon-ux" svgSrc="assets/icons/teradata-ux.svg"></md-icon>
+    </div>
+  </div>
+</td-layout-nav>

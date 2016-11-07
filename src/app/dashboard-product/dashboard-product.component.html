@@ -1,0 +1,18 @@
+<td-layout-nav-list #list logo="assets/icons/hippohonk-logo.svg">
+  <md-nav-list list-items>
+    <template let-item let-last="last" ngFor [ngForOf]="bands">
+      <a md-list-item [routerLink]="['band', item.item_id]" (click)="list.toggle()">
+        <img md-list-avatar src="assets/images/{{item.avatar}}.jpg" alt="{{item.name}}">
+        <h3 md-line> {{item.name}} </h3>
+        <p md-line> {{item.description}} </p>
+      </a>
+      <md-divider *ngIf="!last" md-inset></md-divider>
+    </template>
+  </md-nav-list>
+  <div nav-toolbar-content layout="row" layout-align="center center" flex>
+      <span flex></span>
+      <a md-icon-button md-tooltip="iTunes Playlist" href="http://apple.co/1HEFDl9" target="_blank"><md-icon svgSrc="assets/icons/apple.svg"></md-icon></a>
+      <a md-icon-button md-tooltip="Spotify Playlist" href="http://spoti.fi/1PMcRAB" target="_blank"><md-icon svgSrc="assets/icons/spotify.svg"></md-icon></a>
+  </div>
+  <router-outlet></router-outlet>
+</td-layout-nav-list>

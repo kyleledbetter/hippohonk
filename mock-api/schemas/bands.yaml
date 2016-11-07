@@ -1,0 +1,19 @@
+# this is a sample schema file for a band object.
+
+---
+initial_entries: 39
+randomize: false
+item_id: _photo_
+name: _band_
+description: _description_
+avatar: _photo_
+created: _itemtimestamp_
+genre: _genre_
+origin: _location_
+url: _photo_.com
+twitter: _photo_
+rating: _rating_
+popularity: _popularity_
+rank: _rank_
+festivals: _festivals_
+...
